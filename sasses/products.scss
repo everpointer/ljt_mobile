@@ -57,13 +57,14 @@ div.product_quantity {
   }
 }
 input[type='submit'] {
-  width: 80px;
-  height: 31px;
+  width: 180px;
+  height: 40px;
   background: #3EA156;
   color: #fff;
-  font-size: 14px;
+  font-size: 19px;
   line-height: 20px;
   @include border_radius(5px);
+  margin-top: 4px;
 }
 
 // squareFour checkbox
@@ -71,11 +72,12 @@ input[type=checkbox] {
 	visibility: hidden;
 }
 .squaredFour {
-	width: $image_height;	
+	width: 20px;	
 	position: relative;
   height: 60px;
   top: -29px;
-  margin: 0;
+  margin-left: 10px;
+  margin-right: 17px;
 }
 
 .squaredFour label {
