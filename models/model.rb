@@ -6,6 +6,7 @@ class User
   property :id,           Serial
   property :name,         String
   property :created_at,   DateTime
+  property :platform,     String
 end
 
 class Product

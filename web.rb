@@ -12,14 +12,30 @@ helpers do
 end
 
 configure do
+  enable :sessions
   # load models
   Dir.glob("#{File.dirname(__FILE__)}/models/*.rb") { |model| require model }
   # without this, model operation may fail (console)
   DataMapper.finalize
 end
 
+before '/products' do
+  platform = params[:from]
+  username = params[:username]
+  if platform && username
+    session[:username] = username
+    unless User.first(:name => username)
+      User.create(:name => username, :platform => platform)
+    end
+  end
+end
+
 before do
-  @current_user = User.first(:name => 'laoyufu')
+  if settings.development?
+    session[:username] = "laoyufu"
+  end
+  halt unless session[:username]
+  @current_user = User.first(:name => session[:username])
 end
 
 get '/products' do
