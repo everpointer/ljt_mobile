@@ -40,3 +40,13 @@ strong {
     opacity: .9;
   }
 }
+
+a {
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: #598EDE;
+  &:hover {
+    opacity: .9;
+  }
+}

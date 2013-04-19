@@ -3,7 +3,10 @@ body {
   line-height: 4px; }
 
 .order_general_info h3, .order_address_info h3 {
-  height: 20px; }
+  height: 20px;
+  font-size: 24px;
+  margin-top: 24px;
+  margin-bottom: 4px; }
 .order_general_info .info, .order_address_info .info {
   background: #fff;
   margin-bottom: 10px;
@@ -21,25 +24,39 @@ body {
 
 .order_general_info h3 {
   color: #FFAC4D; }
+.order_general_info p.header {
+  font-size: 1.1em; }
+  .order_general_info p.header a {
+    float: right;
+    margin-right: 12px; }
+.order_general_info .list.hidden {
+  display: none; }
 
 .order_address_info h3 {
   color: #3EA156; }
-.order_address_info p > input[type=text] {
+.order_address_info p label {
+  width: 28%;
+  display: inline-block; }
+.order_address_info p input[type=text] {
   height: 24px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  width: 340px;
-  font-size: 14px; }
+  width: 200px;
+  font-size: 14px;
+  width: 67%; }
+.order_address_info p.submit {
+  height: 50px;
+  padding-top: 6px; }
 
 input[type='submit'] {
-  width: 80px;
-  height: 31px;
+  width: 100px;
+  height: 35px;
   background: #3EA156;
   color: #fff;
-  font-size: 14px;
+  font-size: 17px;
   line-height: 20px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

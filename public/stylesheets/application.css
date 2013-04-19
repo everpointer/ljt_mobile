@@ -30,3 +30,11 @@ strong {
   border-radius: 3px; }
   .btn:hover {
     opacity: .9; }
+
+a {
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: #598EDE; }
+  a:hover {
+    opacity: .9; }

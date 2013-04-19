@@ -41,7 +41,7 @@ div.product_quantity {
     -webkit-appearance: none; }
 
 input[type='submit'] {
-  width: 180px;
+  width: 125px;
   height: 40px;
   background: #3EA156;
   color: #fff;
@@ -62,14 +62,14 @@ input[type=checkbox] {
   position: relative;
   height: 60px;
   top: -29px;
-  margin-left: 10px;
-  margin-right: 17px; }
+  margin-left: 7px;
+  margin-right: 14px; }
 
 .squaredFour label {
   cursor: pointer;
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 27px;
+  height: 27px;
   top: 0;
   border-radius: 4px;
   -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);

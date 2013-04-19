@@ -2,13 +2,15 @@
 .order_general_info
   %h3= "#{@current_user.name}的清单"
   .info
-    -@order_details.each do |order_detail|
-      %p 
-        %strong 商品：
-        = "#{order_detail.product.name}  ￥#{order_detail.unit_price.to_f}  ×  #{order_detail.quantity}份"
-    %p
-      %strong 总价：
+    %p.header
+      %strong 您需要付款：
       = "￥#{@total_price.to_f}"
+      %a{id: "show_order_details"} 查看明细 ⇣
+    .list.hidden
+      -@order_details.each do |order_detail|
+        %p 
+          商品：
+          = "#{order_detail.product.name}  ￥#{order_detail.unit_price.to_f}  ×  #{order_detail.quantity}份"
 
 .order_address_info
   %h3= "请填写收货信息"
@@ -23,6 +25,18 @@
       %p
         %label 收货地址：
         %input{type: "text", name: "order[address]"}
-      %p
+      %p.submit
         %input{type: "submit", value: "确认提交"}
       %input{type: "hidden", name: "_method", value: "PUT"}
+:javascript
+  $("#show_order_details").click(function(event) {    
+    event.preventDefault();
+    general_list = $(".order_general_info .list");
+    if (general_list.hasClass("hidden")) {
+      general_list.removeClass("hidden");
+      $(this).text("收起⇡");
+    } else {
+      general_list.addClass("hidden");
+      $(this).text("查看明细⇣");
+    }
+  });
