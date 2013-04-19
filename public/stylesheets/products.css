@@ -1,7 +1,8 @@
 div.product_item {
   background: white;
   height: 61px;
-  margin-bottom: 2px; }
+  margin-bottom: 2px;
+  padding-top: 10px; }
 
 div.product_img {
   float: left;
@@ -13,20 +14,24 @@ div.product_img {
 .product_info {
   margin-left: 2px; }
   .product_info h4 {
-    font-size: 2em;
-    color: #3EA156; }
+    font-size: 1.8em;
+    color: #3EA156;
+    margin-bottom: 10px; }
   .product_info p {
-    color: #808080; }
+    color: #808080;
+    font-size: 1.2em; }
 
 div.product_quantity {
-  width: 80px;
+  width: 64px;
   height: 34px;
   overflow: hidden;
   background: url(http://cdn.bavotasan.com/wp-content/uploads/2011/05/down_arrow_select.jpg) no-repeat right white;
-  border: 1px solid #ccc; }
+  border: 1px solid #ccc;
+  float: right;
+  margin-right: 10px; }
   div.product_quantity select {
     background: transparent;
-    width: 108px;
+    width: 64px;
     padding: 5px;
     font-size: 16px;
     line-height: 1;
@@ -53,10 +58,10 @@ input[type=checkbox] {
 
 .squaredFour {
   width: 60px;
-  margin: 30px auto;
   position: relative;
   height: 60px;
-  top: -20px; }
+  top: -29px;
+  margin: 0; }
 
 .squaredFour label {
   cursor: pointer;

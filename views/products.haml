@@ -3,19 +3,17 @@
 %form{id: 'order', action: '/order', method: 'POST'}
   -@products.each do |product|
     .product_item
-      .product_img
-        %img{src: '/images/product.png'}
+      .product_check.squaredFour
+        %input.checkbox{type: 'checkbox', id: "product_#{product.id}", value: "None"}
+        %label{for: "product_#{product.id}"}
       .product_info
         %h4= product.name
-        %p{id: "unit_price_#{product.id}", value: product.unit_price}= "单价：￥#{product.unit_price.to_f}"
+        %p{id: "unit_price_#{product.id}", value: product.unit_price}
+          = "单价：￥#{product.unit_price.to_f}"
       .product_quantity
         %select{id: "quantity_#{product.id}", class: "styled_select"}
           - 10.times do |i|
             %option= i+1
         份
-      .product_check.squaredFour
-        %input.checkbox{type: 'checkbox', id: "product_#{product.id}", value: "None"}
-        %label{for: "product_#{product.id}"}
-
   %input{type: 'hidden', name: 'order_details', id: 'order_details'}
   %input{type: 'submit', value: "购  买"}
