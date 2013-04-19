@@ -56,3 +56,5 @@ class OrderDetail
   belongs_to :order
   belongs_to :product
 end
+
+DataMapper.auto_upgrade!
