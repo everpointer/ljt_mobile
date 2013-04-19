@@ -1,0 +1,28 @@
+%link(rel="stylesheet" href="/stylesheets/edit_order.css")
+.order_general_info
+  %h3= "#{@current_user.name}的清单"
+  .info
+    -@order_details.each do |order_detail|
+      %p 
+        %strong 商品：
+        = "#{order_detail.product.name}  ￥#{order_detail.unit_price.to_f}  ×  #{order_detail.quantity}份"
+    %p
+      %strong 总价：
+      = "￥#{@total_price.to_f}"
+
+.order_address_info
+  %h3= "请填写收货信息"
+  .info
+    %form{id: "order_expand", action: "/orders/#{@order.id}", method: "POST"}
+      %p
+        %label 收货人名：
+        %input{type: "text", name: "order[receiver_name]"}
+      %p
+        %label 手机号码：
+        %input{type: "text", name: "order[mobile]"}
+      %p
+        %label 收货地址：
+        %input{type: "text", name: "order[address]"}
+      %p
+        %input{type: "submit", value: "确认提交"}
+      %input{type: "hidden", name: "_method", value: "PUT"}

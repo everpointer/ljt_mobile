@@ -1,0 +1,59 @@
+// mixins
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+body {
+  font-size: 16px;
+  line-height: 4px;
+}
+.order_general_info, .order_address_info {
+  h3 {
+    height: 20px;
+  }
+  .info {
+    background: #fff;
+    margin-bottom: 10px;
+    @include border-radius(5px);
+    border: 1px solid #ccc;
+  }
+
+  p {
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    line-height: 41px;
+    padding-left: 6px;
+  }
+}
+
+.order_general_info {
+  h3 {
+    color: #FFAC4D;
+  }
+}
+
+.order_address_info {
+  h3 {
+    color: #3EA156;
+  }
+  p > input[type=text] {
+      height: 24px;
+      @include border_radius(3px);
+      width: 340px;
+      font-size: 14px;
+  }
+}
+
+input[type='submit'] {
+  width: 80px;
+  height: 31px;
+  background: #3EA156;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  @include border_radius(5px);
+}

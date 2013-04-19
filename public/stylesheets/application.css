@@ -1,0 +1,32 @@
+body {
+  font: 12px Helvetica,Arial,sans-serif;
+  background: #E9EEF2; }
+
+ul, h1, h2, h3, h4, h5, h6, p {
+  margin: 0; }
+
+ul {
+  padding: 0;
+  list-style: none; }
+
+strong {
+  font-weight: bold; }
+
+.btn {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.2em;
+  color: #fff;
+  width: 310px;
+  border: 0 none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px; }
+  .btn:hover {
+    opacity: .9; }
