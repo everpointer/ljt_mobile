@@ -7,6 +7,8 @@ class User
   property :name,         String
   property :created_at,   DateTime
   property :platform,     String
+
+  has n, :orders
 end
 
 class Product

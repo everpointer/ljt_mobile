@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'rubygems'
 require 'sinatra'
+require "sinatra/json"
 require "sinatra/reloader" if development?
 require 'data_mapper'
 require 'haml'
@@ -75,5 +76,19 @@ put '/orders/:id' do
   else
     "shit!"
   end
+end
+
+get '/orders/history/:username' do
+  user = User.first(:name => params[:username])  
+  
+  history_orders = []
+  user.orders.each do |order|
+    total_price = order.order_details.inject(0) do |sum, order_detail|
+      sum + order_detail[:unit_price]*order_detail[:quantity]
+    end
+    history_orders << {:order_number => order.order_number, :total_price => total_price, :created_at => order.created_at}
+  end
+
+  json :orders => history_orders
 end
 
