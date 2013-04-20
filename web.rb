@@ -46,7 +46,7 @@ post '/order' do
   order = Order.create(params[:order])
   order.user = @current_user
   if order.save
-    order_details = JSON.parse(params[:order_details])
+    order_details = params[:order_details] && params[:order_details].length >=2 ? JSON.parse(params[:order_details]): []
     order_details.each do |order_detail|
       order_detail[:unit_price] = order_detail['unit_price'].to_d
       order.order_details << OrderDetail.new(order_detail)

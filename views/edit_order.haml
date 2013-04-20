@@ -1,6 +1,6 @@
 %link(rel="stylesheet" href="/stylesheets/edit_order.css")
 .order_general_info
-  %h3= "#{@current_user.name}的清单"
+  %h3 您的购物清单
   .info
     %p.header
       %strong 您需要付款：
@@ -13,7 +13,7 @@
           = "#{order_detail.product.name}  ￥#{order_detail.unit_price.to_f}  ×  #{order_detail.quantity}份"
 
 .order_address_info
-  %h3= "请填写收货信息"
+  %h3 填写收货信息
   .info
     %form{id: "order_expand", action: "/orders/#{@order.id}", method: "POST"}
       %p
