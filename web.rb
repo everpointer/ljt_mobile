@@ -37,6 +37,7 @@ before do
   end
   halt unless session[:username]
   @current_user = User.first(:name => session[:username])
+  puts "Current OpenID:#{session[:username]}"
 end
 
 get '/products' do
