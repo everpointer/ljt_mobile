@@ -32,12 +32,9 @@ before '/products' do
 end
 
 before do
-  if settings.development?
-    session[:username] = "laoyufu"
-  end
-  halt unless session[:username]
+  pass if request.path_info.include? "/orders/history/"
+  halt "User session not exist!" unless session[:username]
   @current_user = User.first(:name => session[:username])
-  puts "Current OpenID:#{session[:username]}"
 end
 
 get '/products' do
@@ -83,11 +80,13 @@ get '/orders/history/:username' do
   user = User.first(:name => params[:username])  
   
   history_orders = []
-  user.orders.each do |order|
-    total_price = order.order_details.inject(0) do |sum, order_detail|
-      sum + order_detail[:unit_price]*order_detail[:quantity]
+  if user 
+    user.orders.each do |order|
+      total_price = order.order_details.inject(0) do |sum, order_detail|
+        sum + order_detail[:unit_price]*order_detail[:quantity]
+      end
+      history_orders << {:order_number => order.order_number, :total_price => total_price, :created_at => order.created_at}
     end
-    history_orders << {:order_number => order.order_number, :total_price => total_price, :created_at => order.created_at}
   end
 
   json :orders => history_orders
