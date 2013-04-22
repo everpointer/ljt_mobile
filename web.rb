@@ -23,6 +23,10 @@ end
 before '/products' do
   platform = params[:from]
   username = params[:username]
+  if settings.development?
+    platform ||= 'wx'  
+    username ||= 'laoyufu'
+  end
   if platform && username
     session[:username] = username
     unless User.first(:name => username)
@@ -64,20 +68,19 @@ get '/orders/:id/edit' do
   @total_price = @order_details.inject(0) do |sum, order_detail|
     sum + order_detail[:unit_price]*order_detail[:quantity]
   end
-  haml :edit_order
 end
 
 put '/orders/:id' do
   @order = Order.get(params[:id])
   if @order.update(params[:order])
-    haml :order_finish  
+    haml :order_finish
   else
     "shit!"
   end
 end
 
 get '/orders/history/:username' do
-  user = User.first(:name => params[:username])  
+  user = User.first(:name => params[:username])
   
   history_orders = []
   if user 

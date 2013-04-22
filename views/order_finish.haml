@@ -1,3 +1,8 @@
 %link(rel="stylesheet" href="/stylesheets/order_finish.css")
 %h2 下单成功!
+%ul
+  %li 
+    %span 订单编号
+    %p= @order.order_number
+    %p.tip 请记住您的订单编号哦，方便后期查询！
 %a.btn{href: "/products"} 继续购物

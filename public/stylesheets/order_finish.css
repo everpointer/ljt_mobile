@@ -1,8 +1,25 @@
 h2 {
-  color: #3EA156; }
+  color: #3EA156;
+  text-align: center; }
+
+ul {
+  margin-top: 10px; }
+  ul li span {
+    color: #aaa;
+    font-size: 1em; }
+  ul li p {
+    line-height: 30px;
+    font-size: 1.3em; }
+
+.tip {
+  background: #ffeddd;
+  font-size: 1.1em;
+  width: 81%;
+  margin-left: 44px;
+  padding-left: 8px; }
 
 a.btn {
   background: #92A5C1;
-  width: 80px;
-  height: 40px;
-  line-height: 40px; }
+  width: 99%;
+  height: 30px;
+  line-height: 30px; }
