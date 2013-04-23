@@ -31,6 +31,7 @@ class Order
   property :mobile,     String
   property :address,    String
   property :order_number, String
+  property :status, String, :default => "created" # statuses: created, cancel, removed, confirmed
 
   belongs_to :user
   
@@ -39,6 +40,11 @@ class Order
 
   before :create, :generate_order_number
 
+  def total_price
+    self.order_details.inject(0) do |sum, order_detail|
+      sum + order_detail[:unit_price]*order_detail[:quantity]
+    end
+  end
   private
 
   def generate_order_number

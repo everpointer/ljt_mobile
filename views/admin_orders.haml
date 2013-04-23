@@ -1,0 +1,61 @@
+%link(rel="stylesheet" href="admin_orders.scss")
+%ul(class="nav nav-tabs" id="filter_nav")
+  %li
+    %a 未处理订单
+  %li
+    %a 已处理订单
+  %li 
+    %form
+      %input(id="search_order_input" placeholder="输入'订单号，收货人，手机号'进行查询")
+      %button(id="btn_search_order" class="btn btn-primary") 查询
+
+.order_table_wrapper
+  %h4 邻家田微信订单列表
+  %table(class="table table-stripe table-bordered table_hover table_wrapper")
+    %thead
+      %tr
+        %th 
+          %span   
+            %input{type: "checkbox"}
+            %input{type: "hidden"}
+          订单号
+        %th 下单时间
+        %th 收货人
+        %th 总金额(￥)
+        %th 状态
+        %th 操作
+
+    %tbody
+      - @orders.each do |order|
+        - @order_details = order.order_details
+        %tr
+          %td.order_number_td
+            %span
+              %input{type: "checkbox"}
+              %input{type: "hidden"}
+            %span.order_number= order.order_number
+          %td.order_date= order.created_at.strftime("%m-%d %H:%M")
+          %td.order_receiver
+            %span.receiver_name= order.receiver_name
+            [TEL:]
+            %span.mobile= order.mobile
+            %p.order_address= order.address
+          %td.total_price= order.total_price.to_f
+          %td.order_status= order_status(order.status)
+          %td.operation
+            %a{id: "show_order_details_#{order.id}"} 查看
+        %tr
+          %td(colspan=8)
+            - order.order_details.each do |order_detail|
+              %p
+                商品：
+                = "#{order_detail.product.name}  ￥#{order_detail.unit_price.to_f}  ×  #{order_detail.quantity}份"
+
+
+
+  .table_bottom_bar
+    .btn-group
+      %button.btn(id='edit_order') 修改订单
+      %button.btn(id='confirm_handle') 确认处理
+      %button.btn(id='cancel_handle') 取消处理
+    -# = paginate @orders

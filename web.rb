@@ -10,6 +10,20 @@ require 'json'
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
 
 helpers do
+  def order_status(status)
+    case status
+    when "created"
+      "未处理"
+    when "cancel"
+      "用户取消"
+    when "removed"
+      "管理员作废"
+    when "confirmed"
+      "已确认"
+    else
+      "异常状态"
+    end
+  end
 end
 
 configure do
@@ -94,5 +108,14 @@ get '/orders/history/:username' do
   end
 
   json :orders => history_orders
+end
+
+# admin routes
+
+get '/admin' do
+  @orders = Order.all
+  @order_details = []
+
+  haml :admin_orders, :layout => :admin_layout
 end
 
