@@ -56,7 +56,7 @@ before do
 end
 
 get '/products' do
-  @products = Product.all  
+  @products = Product.all
   haml :products 
 end
 
@@ -110,10 +110,39 @@ get '/orders/history/:username' do
   json :orders => history_orders
 end
 
+# order ajax api route
+
+put '/api/orders/confirm' do
+  order_id_list = JSON.parse(params[:order_id_list]) || []
+
+  if params[:operation] == "confirm"
+    status = "confirmed"
+  elsif params[:operation] == "unconfirm"
+    status = "created"
+  else
+    halt 400, "Wrong request parameters!"
+  end
+  
+  unless Order.all(:id => order_id_list).update(:status => status)
+    halt 500, "Order update operation failed!"
+  end
+  
+  "Update successfully!"
+end
+
 # admin routes
 
 get '/admin' do
-  @orders = Order.all
+  status_filter = params[:status_filter]
+  query = params[:query]
+
+  @orders = Order.all()
+  if (status_filter)
+    @orders &= Order.status(status_filter)
+  end
+  if (query)
+    @orders &= Order.query(query)
+  end
   @order_details = []
 
   haml :admin_orders, :layout => :admin_layout

@@ -18,6 +18,7 @@ class Product
   property :name,             String
   property :unit_price,       Decimal
   property :created_at,       DateTime
+  property :category,         String
 
   has n, :order_details
 end
@@ -45,6 +46,26 @@ class Order
       sum + order_detail[:unit_price]*order_detail[:quantity]
     end
   end
+
+  # scopes
+  def self.status(status_filter)
+    all(:status => status_filter)
+  end
+
+  def self.query(query_str)
+    query_str.strip!
+
+    if query_str == ""
+      all()
+    elsif query_str =~ %r{\d{16}}  # order number
+      all(:order_number => query_str)
+    elsif query_str =~ %r{\d{8}|\d{11}}
+      all(:mobile.like => "%#{query_str}%")
+    else
+      all(:receiver_name.like => "%#{query_str}%") | all(:address.like => "%#{query_str}%")
+    end
+  end
+
   private
 
   def generate_order_number
